@@ -9,7 +9,7 @@ SELECT
     transaction_date,
     transaction_amount
 FROM bank_data
-WHERE anomaly = 1;
+WHERE anomaly = -1;
 
 # Are anomalies concentrated in certain branches, transaction types, or customer groups?
 # Certain branches
@@ -17,7 +17,7 @@ SELECT
     branch_id,
     COUNT(*) AS anomaly_count
 FROM bank_data
-WHERE anomaly = 1
+WHERE anomaly = -1
 GROUP BY branch_id
 ORDER BY anomaly_count DESC;
 
@@ -26,7 +26,7 @@ SELECT
     transaction_type,
     COUNT(*) AS anomaly_count
 FROM bank_data
-WHERE anomaly = 1
+WHERE anomaly = -1
 GROUP BY transaction_type
 ORDER BY anomaly_count DESC;
 
@@ -41,5 +41,6 @@ SELECT
 	END AS age_group,
     COUNT(*) AS anomaly_count
     FROM bank_data
+    WHERE anomaly = -1
     GROUP BY age_group
     ORDER BY anomaly_count DESC;
